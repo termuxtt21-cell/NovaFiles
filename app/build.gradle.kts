@@ -4,6 +4,7 @@ plugins {
 
 android {
     namespace = "com.novafiles"
+
     compileSdk = 37
 
     defaultConfig {
@@ -43,19 +44,40 @@ dependencies {
     implementation("androidx.core:core-ktx:1.17.0")
     implementation("androidx.activity:activity-compose:1.13.0")
 
-    // Compose
-    implementation(platform("androidx.compose:compose-bom:2026.09.00"))
+    // Jetpack Compose
+    implementation(
+        platform(
+            "androidx.compose:compose-bom:2026.09.00"
+        )
+    )
 
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
 
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(
+        "androidx.compose.material3:material3"
+    )
+
+    // Material Icons
+    implementation(
+        "androidx.compose.material:material-icons-core"
+    )
+
+    debugImplementation(
+        "androidx.compose.ui:ui-tooling"
+    )
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
+    implementation(
+        "androidx.lifecycle:lifecycle-runtime-compose:2.9.4"
+    )
 
     // Shizuku
-    implementation("dev.rikka.shizuku:api:13.1.5")
-    implementation("dev.rikka.shizuku:provider:13.1.5")
+    implementation(
+        "dev.rikka.shizuku:api:13.1.5"
+    )
+
+    implementation(
+        "dev.rikka.shizuku:provider:13.1.5"
+    )
 }
