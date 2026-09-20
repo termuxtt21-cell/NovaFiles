@@ -1,0 +1,33 @@
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Ana klasör -->
+    <path
+        android:fillColor="#202A38"
+        android:pathData="M18,30 L42,30 L49,37 L90,37 L90,79 Q90,86 83,86 L25,86 Q18,86 18,79 Z" />
+
+    <!-- Klasör üst ışığı -->
+    <path
+        android:fillColor="#34465C"
+        android:pathData="M18,30 L42,30 L49,37 L90,37 L90,44 L18,44 Z" />
+
+    <!-- Cyan N -->
+    <path
+        android:fillColor="#4CC9FF"
+        android:pathData="M39,48 L46,48 L62,67 L62,48 L69,48 L69,77 L62,77 L46,58 L46,77 L39,77 Z" />
+
+    <!-- Mor vurgu -->
+    <path
+        android:fillColor="#7B61FF"
+        android:pathData="M74,51 A4,4 0,1 1,66 51 A4,4 0,1 1,74 51" />
+
+    <!-- Turuncu dosya detayı -->
+    <path
+        android:fillColor="#FF9F43"
+        android:pathData="M24,54 L34,54 L34,64 L24,64 Z" />
+
+</vector>
