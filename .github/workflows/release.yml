@@ -28,10 +28,10 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
 
-      - name: Set up Gradle
+          - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "9.6"
+          gradle-version: "9.6.0"
 
       - name: Check environment
         run: |
