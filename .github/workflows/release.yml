@@ -28,10 +28,14 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "9.2.1"
+      - name: Install Gradle
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-9.6-bin.zip
+          unzip -q gradle-9.6-bin.zip -d "$HOME/gradle"
+          echo "$HOME/gradle/gradle-9.6/bin" >> "$GITHUB_PATH"
+
+      - name: Check Gradle
+        run: gradle --version
 
       - name: Build release APK
         run: gradle assembleRelease --stacktrace
@@ -42,7 +46,7 @@ jobs:
           cp app/build/outputs/apk/release/app-release.apk \
              output/NovaFiles.apk
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NovaFiles-APK
