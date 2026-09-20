@@ -59,28 +59,41 @@ jobs:
             --no-daemon
 
       - name: Find release APK
-  run: |
-    echo "Searching for APK files..."
-    find app/build/outputs -type f \( -name "*.apk" -o -name "*.aab" \) -print
+        run: |
+          echo "Searching for APK files..."
 
-- name: Prepare APK
-  run: |
-    mkdir -p output
+          find app/build/outputs \
+            -type f \
+            -name "*.apk" \
+            -print
 
-    APK_PATH=$(find app/build/outputs -type f -name "*.apk" | head -n 1)
+      - name: Prepare APK
+        run: |
+          mkdir -p output
 
-    if [ -z "$APK_PATH" ]; then
-      echo "ERROR: No APK was generated."
-      echo "Full outputs directory:"
-      find app/build/outputs -maxdepth 5 -type f -print
-      exit 1
-    fi
+          APK_PATH=$(find app/build/outputs \
+            -type f \
+            -name "*.apk" \
+            | head -n 1)
 
-    echo "Found APK: $APK_PATH"
-    cp "$APK_PATH" output/NovaFiles.apk
+          if [ -z "$APK_PATH" ]; then
+            echo "ERROR: No APK was generated."
+            echo "Full outputs directory:"
 
-    echo "Prepared APK:"
-    ls -lh output/NovaFiles.apk
+            find app/build/outputs \
+              -maxdepth 5 \
+              -type f \
+              -print
+
+            exit 1
+          fi
+
+          echo "Found APK: $APK_PATH"
+
+          cp "$APK_PATH" output/NovaFiles.apk
+
+          echo "Prepared APK:"
+          ls -lh output/NovaFiles.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
