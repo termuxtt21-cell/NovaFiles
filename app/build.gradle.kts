@@ -19,15 +19,18 @@ android {
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = false
-        }
-
-        release {
-            isMinifyEnabled = false
-            isShrinkResources = false
-        }
+    debug {
+        isMinifyEnabled = false
     }
+
+    release {
+        isMinifyEnabled = false
+        isShrinkResources = false
+
+        // Test APK'sını Android'e kurulabilir şekilde imzalar.
+        signingConfig = signingConfigs.getByName("debug")
+    }
+}
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
