@@ -29,12 +29,6 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
 
-      - name: Install Android SDK packages
-        run: |
-          sdkmanager "platform-tools"
-          sdkmanager "platforms;android-37"
-          sdkmanager "build-tools;36.0.0"
-
       - name: Install Gradle 9.6.0
         run: |
           curl -L \
