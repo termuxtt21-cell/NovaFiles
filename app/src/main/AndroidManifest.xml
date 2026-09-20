@@ -2,11 +2,10 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- İnternet:
-         GitHub güncelleme kontrolü ve APK indirme -->
+    <!-- İnternet: güncelleme kontrolü ve GitHub bağlantısı -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- Dosya yöneticisi için geniş depolama erişimi -->
+    <!-- Gelişmiş depolama erişimi -->
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
@@ -26,14 +25,32 @@
             android:exported="true"
             android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
+        <!-- APK ve dosya paylaşımı -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+
+        </provider>
+
         <!-- Ana ekran -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
 
         </activity>
