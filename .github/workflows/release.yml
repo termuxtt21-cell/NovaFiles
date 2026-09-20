@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    name: Build APK
+    name: Build NovaFiles APK
     runs-on: ubuntu-latest
 
     steps:
@@ -26,19 +26,26 @@ jobs:
           java-version: "17"
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ""
 
-      - name: Install Gradle
+      - name: Install Gradle 9.6
         run: |
           wget -q https://services.gradle.org/distributions/gradle-9.6-bin.zip
           unzip -q gradle-9.6-bin.zip -d "$HOME/gradle"
           echo "$HOME/gradle/gradle-9.6/bin" >> "$GITHUB_PATH"
 
-      - name: Check Gradle
-        run: gradle --version
+      - name: Check environment
+        run: |
+          java -version
+          gradle --version
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" || true
+          ls "$ANDROID_HOME/build-tools" || true
 
       - name: Build release APK
-        run: gradle assembleRelease --stacktrace
+        run: gradle assembleRelease --stacktrace --no-daemon
 
       - name: Rename APK
         run: |
