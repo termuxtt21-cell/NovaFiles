@@ -27,31 +27,26 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
-        with:
-          packages: ""
 
-      - name: Install Gradle 9.6
-        run: |
-          wget -q https://services.gradle.org/distributions/gradle-9.6-bin.zip
-          unzip -q gradle-9.6-bin.zip -d "$HOME/gradle"
-          echo "$HOME/gradle/gradle-9.6/bin" >> "$GITHUB_PATH"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.6"
 
       - name: Check environment
         run: |
           java -version
           gradle --version
           echo "ANDROID_HOME=$ANDROID_HOME"
-          ls "$ANDROID_HOME/platforms" || true
-          ls "$ANDROID_HOME/build-tools" || true
 
       - name: Build release APK
-        run: gradle assembleRelease --stacktrace --no-daemon
+        run: |
+          gradle assembleRelease --stacktrace --no-daemon
 
-      - name: Rename APK
+      - name: Prepare APK
         run: |
           mkdir -p output
-          cp app/build/outputs/apk/release/app-release.apk \
-             output/NovaFiles.apk
+          cp app/build/outputs/apk/release/app-release.apk output/NovaFiles.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
