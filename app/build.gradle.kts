@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -34,8 +35,9 @@ android {
     }
 
     buildFeatures {
-        buildConfig = true
-    }
+    buildConfig = true
+    compose = true
+}
 }
 
 dependencies {
